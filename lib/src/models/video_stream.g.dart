@@ -9,7 +9,7 @@ part of 'video_stream.dart';
 PipedVideoStream _$PipedVideoStreamFromJson(Map<String, dynamic> json) =>
     PipedVideoStream(
       bitrate: json['bitrate'] as int,
-      codec: json['codec'] as String,
+      codec: json['codec'] as String?,
       format: $enumDecode(_$PipedVideoStreamFormatEnumMap, json['format']),
       fps: json['fps'] as int,
       height: json['height'] as int,
@@ -45,4 +45,5 @@ Map<String, dynamic> _$PipedVideoStreamToJson(PipedVideoStream instance) =>
 const _$PipedVideoStreamFormatEnumMap = {
   PipedVideoStreamFormat.mp4: 'MPEG_4',
   PipedVideoStreamFormat.webm: 'WEBM',
+  PipedVideoStreamFormat.v3GPP: 'v3GPP',
 };

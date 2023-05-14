@@ -7,12 +7,15 @@ int durationToJson(Duration duration) {
 }
 
 String countryCodeToEmoji(String countryCode) {
-  final codePoints =
-      countryCode.toUpperCase().runes.map((charCode) => 127397 + charCode);
+  final codePoints = countryCode
+      .trim()
+      .toUpperCase()
+      .runes
+      .map((charCode) => 127397 + charCode);
   return String.fromCharCodes(codePoints);
 }
 
 String emojiToCountryCode(String emoji) {
-  final codePoints = emoji.runes.map((charCode) => charCode - 127397);
+  final codePoints = emoji.trim().runes.map((charCode) => charCode - 127397);
   return String.fromCharCodes(codePoints);
 }

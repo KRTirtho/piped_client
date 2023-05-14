@@ -13,24 +13,24 @@ PipedStreamResponse _$PipedStreamResponseFromJson(Map<String, dynamic> json) =>
       dislikes: json['dislikes'] as int,
       duration: durationFromJson(json['duration']),
       hls: json['hls'] as String?,
-      lbryId: json['lbryId'] as String,
       likes: json['likes'] as int,
       livestream: json['livestream'] as bool,
       proxyUrl: json['proxyUrl'] as String,
       thumbnailUrl: json['thumbnailUrl'] as String,
       title: json['title'] as String,
-      uploadedDate: json['uploadedDate'] as String,
       uploader: json['uploader'] as String,
       uploaderUrl: json['uploaderUrl'] as String,
       uploaderVerified: json['uploaderVerified'] as bool,
       views: json['views'] as int,
+      id: json['id'] as String,
+      lbryId: json['lbryId'] as String?,
+      uploadedDate: json['uploadedDate'] as String?,
       audioStreams: (json['audioStreams'] as List<dynamic>?)
               ?.map((e) => PipedAudioStream.fromJson(e as Map<String, dynamic>))
               .toList() ??
           const [],
       relatedStreams: (json['relatedStreams'] as List<dynamic>?)
-              ?.map(
-                  (e) => PipedRelatedStream.fromJson(e as Map<String, dynamic>))
+              ?.map((e) => PipedSearchItem.fromJson(e as Map<String, dynamic>))
               .toList() ??
           const [],
       subtitles: (json['subtitles'] as List<dynamic>?)
@@ -46,6 +46,7 @@ PipedStreamResponse _$PipedStreamResponseFromJson(Map<String, dynamic> json) =>
 Map<String, dynamic> _$PipedStreamResponseToJson(
         PipedStreamResponse instance) =>
     <String, dynamic>{
+      'id': instance.id,
       'dash': instance.dash,
       'description': instance.description,
       'dislikes': instance.dislikes,

@@ -1,7 +1,7 @@
 import 'package:json_annotation/json_annotation.dart';
 import 'package:piped_client/src/converter.dart';
 import 'package:piped_client/src/models/audio_stream.dart';
-import 'package:piped_client/src/models/related_stream.dart';
+import 'package:piped_client/src/models/search_item.dart';
 import 'package:piped_client/src/models/subtitle.dart';
 import 'package:piped_client/src/models/video_stream.dart';
 
@@ -9,6 +9,9 @@ part 'stream_response.g.dart';
 
 @JsonSerializable()
 class PipedStreamResponse {
+  @JsonKey()
+  final String id;
+
   @JsonKey()
   final String? dash;
 
@@ -28,7 +31,7 @@ class PipedStreamResponse {
   final String? hls;
 
   @JsonKey()
-  final String lbryId;
+  final String? lbryId;
 
   @JsonKey()
   final int likes;
@@ -46,7 +49,7 @@ class PipedStreamResponse {
   final String title;
 
   @JsonKey()
-  final String uploadedDate;
+  final String? uploadedDate;
 
   @JsonKey()
   final String uploader;
@@ -64,7 +67,7 @@ class PipedStreamResponse {
   final List<PipedAudioStream> audioStreams;
 
   @JsonKey()
-  final List<PipedRelatedStream> relatedStreams;
+  final List<PipedSearchItem> relatedStreams;
 
   @JsonKey()
   final List<PipedSubtitle> subtitles;
@@ -142,17 +145,18 @@ class PipedStreamResponse {
     required this.dislikes,
     required this.duration,
     required this.hls,
-    required this.lbryId,
     required this.likes,
     required this.livestream,
     required this.proxyUrl,
     required this.thumbnailUrl,
     required this.title,
-    required this.uploadedDate,
     required this.uploader,
     required this.uploaderUrl,
     required this.uploaderVerified,
     required this.views,
+    required this.id,
+    this.lbryId,
+    this.uploadedDate,
     this.audioStreams = const [],
     this.relatedStreams = const [],
     this.subtitles = const [],

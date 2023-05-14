@@ -1,42 +1,47 @@
 import 'package:json_annotation/json_annotation.dart';
+import 'package:piped_client/src/models/search_item_channel.dart';
+import 'package:piped_client/src/models/search_item_playlist.dart';
+import 'package:piped_client/src/models/search_item_stream.dart';
 
 part 'search_item.g.dart';
 
+enum PipedSearchItemType {
+  @JsonValue("stream")
+  stream,
+  @JsonValue("channel")
+  channel,
+  @JsonValue("playlist")
+  playlist,
+}
+
 @JsonSerializable()
 class PipedSearchItem {
+  @JsonKey()
   final String url;
-  final String type;
-  final String title;
+  @JsonKey()
+  final PipedSearchItemType type;
+
+  @JsonKey()
   final String thumbnail;
-  final String uploaderName;
-  final String uploaderUrl;
-  final String uploaderAvatar;
-  final String uploadedDate;
-  final String shortDescription;
-  final int duration;
-  final int views;
-  final int uploaded;
-  final bool uploaderVerified;
-  final bool isShort;
+
+  String get id => url.split("/").last;
 
   PipedSearchItem({
     required this.url,
     required this.type,
-    required this.title,
     required this.thumbnail,
-    required this.uploaderName,
-    required this.uploaderUrl,
-    required this.uploaderAvatar,
-    required this.uploadedDate,
-    required this.shortDescription,
-    required this.duration,
-    required this.views,
-    required this.uploaded,
-    required this.uploaderVerified,
-    required this.isShort,
   });
 
-  factory PipedSearchItem.fromJson(Map<String, dynamic> json) =>
-      _$PipedSearchItemFromJson(json);
+  factory PipedSearchItem.fromJson(Map<String, dynamic> json) {
+    final self = _$PipedSearchItemFromJson(json);
+    switch (self.type) {
+      case PipedSearchItemType.stream:
+        return PipedSearchItemStream.fromJson(json);
+      case PipedSearchItemType.channel:
+        return PipedSearchItemChannel.fromJson(json);
+      case PipedSearchItemType.playlist:
+        return PipedSearchItemPlaylist.fromJson(json);
+    }
+  }
   Map<String, dynamic> toJson() => _$PipedSearchItemToJson(this);
 }

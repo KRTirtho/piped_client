@@ -6,7 +6,9 @@ enum PipedVideoStreamFormat {
   @JsonValue("MPEG_4")
   mp4,
   @JsonValue("WEBM")
-  webm
+  webm,
+  @JsonValue("v3GPP")
+  v3GPP,
 }
 
 @JsonSerializable()
@@ -15,7 +17,7 @@ class PipedVideoStream {
   final int bitrate;
 
   @JsonKey()
-  final String codec;
+  final String? codec;
 
   @JsonKey()
   final PipedVideoStreamFormat format;
@@ -55,7 +57,7 @@ class PipedVideoStream {
 
   PipedVideoStream({
     required this.bitrate,
-    required this.codec,
+    this.codec,
     required this.format,
     required this.fps,
     required this.height,

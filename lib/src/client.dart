@@ -31,7 +31,10 @@ class PipedClient {
 
   Future<PipedStreamResponse> streams(String videoId) async {
     final res = await client.get("/streams/$videoId");
-    return PipedStreamResponse.fromJson(res.data);
+    return PipedStreamResponse.fromJson(<String, dynamic>{
+      ...res.data,
+      "id": videoId,
+    });
   }
 
   Future<PipedSearchResult> search(
