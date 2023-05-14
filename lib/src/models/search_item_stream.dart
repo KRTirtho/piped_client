@@ -12,7 +12,7 @@ class PipedSearchItemStream extends PipedSearchItem {
   @JsonKey()
   final String? uploaderUrl;
   @JsonKey()
-  final String uploaderAvatar;
+  final String? uploaderAvatar;
   @JsonKey()
   final String? uploadedDate;
   @JsonKey()
@@ -38,7 +38,7 @@ class PipedSearchItemStream extends PipedSearchItem {
     required this.title,
     required this.uploaderName,
     required this.uploaderUrl,
-    required this.uploaderAvatar,
+    this.uploaderAvatar,
     required this.uploadedDate,
     required this.shortDescription,
     required this.duration,

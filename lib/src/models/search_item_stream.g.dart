@@ -15,7 +15,7 @@ PipedSearchItemStream _$PipedSearchItemStreamFromJson(
       title: json['title'] as String,
       uploaderName: json['uploaderName'] as String,
       uploaderUrl: json['uploaderUrl'] as String?,
-      uploaderAvatar: json['uploaderAvatar'] as String,
+      uploaderAvatar: json['uploaderAvatar'] as String?,
       uploadedDate: json['uploadedDate'] as String?,
       shortDescription: json['shortDescription'] as String?,
       duration: durationFromJson(json['duration']),
