@@ -63,8 +63,8 @@ Map<String, dynamic> _$PipedStreamResponseToJson(
       'uploaderUrl': instance.uploaderUrl,
       'uploaderVerified': instance.uploaderVerified,
       'views': instance.views,
-      'audioStreams': instance.audioStreams,
-      'relatedStreams': instance.relatedStreams,
-      'subtitles': instance.subtitles,
-      'videoStreams': instance.videoStreams,
+      'audioStreams': listToJson(instance.audioStreams),
+      'relatedStreams': listToJson(instance.relatedStreams),
+      'subtitles': listToJson(instance.subtitles),
+      'videoStreams': listToJson(instance.videoStreams),
     };

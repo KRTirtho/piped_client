@@ -63,16 +63,16 @@ class PipedStreamResponse {
   @JsonKey()
   final int views;
 
-  @JsonKey()
+  @JsonKey(toJson: listToJson)
   final List<PipedAudioStream> audioStreams;
 
-  @JsonKey()
+  @JsonKey(toJson: listToJson)
   final List<PipedSearchItem> relatedStreams;
 
-  @JsonKey()
+  @JsonKey(toJson: listToJson)
   final List<PipedSubtitle> subtitles;
 
-  @JsonKey()
+  @JsonKey(toJson: listToJson)
   final List<PipedVideoStream> videoStreams;
 
   PipedAudioStream? highestBitrateAudioStreamOfFormat(

@@ -19,3 +19,10 @@ String emojiToCountryCode(String emoji) {
   final codePoints = emoji.trim().runes.map((charCode) => charCode - 127397);
   return String.fromCharCodes(codePoints);
 }
+
+List<Map<String, dynamic>> listToJson(List list) {
+  return list
+      .map((e) => (e as dynamic).toJson())
+      .toList()
+      .cast<Map<String, dynamic>>();
+}
