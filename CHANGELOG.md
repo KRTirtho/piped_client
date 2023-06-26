@@ -1,3 +1,6 @@
-## 1.0.0
+## 0.1.0
 
-- Initial version.
+Initial Release:
+- /search endpoint implemented
+- /streams endpoint implemented
+- instances.md getter
