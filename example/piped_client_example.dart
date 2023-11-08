@@ -3,7 +3,7 @@ import 'package:piped_client/piped_client.dart';
 void main() async {
   final client = PipedClient();
 
-  final result = await client.search('nghat');
+  final result = await client.search('piped');
 
   for (final item in result.items) {
     if (item is PipedSearchItemStream) {
