@@ -8,7 +8,7 @@ class PipedSearchItemChannel extends PipedSearchItem {
   @JsonKey()
   final String name;
   @JsonKey()
-  final String description;
+  final String? description;
   @JsonKey()
   final int subscribers;
   @JsonKey()
