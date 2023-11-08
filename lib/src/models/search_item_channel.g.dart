@@ -13,7 +13,7 @@ PipedSearchItemChannel _$PipedSearchItemChannelFromJson(
       type: $enumDecode(_$PipedSearchItemTypeEnumMap, json['type']),
       thumbnail: json['thumbnail'] as String,
       name: json['name'] as String,
-      description: json['description'] as String,
+      description: json['description'] as String?,
       subscribers: json['subscribers'] as int,
       videos: json['videos'] as int,
       verified: json['verified'] as bool,
