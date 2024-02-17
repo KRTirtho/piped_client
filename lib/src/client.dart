@@ -81,6 +81,9 @@ class PipedClient {
       });
     }
 
-    return instances.map(PipedInstance.fromJson).toList();
+    return instances
+        .map(PipedInstance.fromJson)
+        .where((instance) => instance.apiUrl.startsWith("http"))
+        .toList();
   }
 }
