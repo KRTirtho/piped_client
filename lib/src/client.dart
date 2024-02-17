@@ -6,7 +6,7 @@ import 'package:piped_client/src/models/stream_response.dart';
 
 enum PipedFilter {
   all("all"),
-  video("videos"),
+  videos("videos"),
   playlists("playlists"),
   musicSongs("music_songs"),
   musicVideos("music_videos"),
