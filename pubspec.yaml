@@ -1,6 +1,6 @@
 name: piped_client
 description: API Client for piped.video
-version: 0.1.0
+version: 0.1.1
 homepage: https://github.com/KRTirtho/piped_client
 
 environment:
