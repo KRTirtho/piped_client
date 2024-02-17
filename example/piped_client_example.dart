@@ -3,6 +3,13 @@ import 'package:piped_client/piped_client.dart';
 void main() async {
   final client = PipedClient();
 
+  final instances = await client.instanceList();
+
+  for (final instance in instances) {
+    print(
+        'Instance: ${instance.name}${instance.locations} => ${instance.apiUrl}');
+  }
+
   final result = await client.search('piped');
 
   for (final item in result.items) {

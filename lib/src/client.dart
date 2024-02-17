@@ -19,9 +19,11 @@ enum PipedFilter {
 
 class PipedClient {
   final Dio client;
+  final bool debug;
 
   PipedClient({
     String instance = "https://pipedapi.kavin.rocks",
+    this.debug = false,
   }) : client = Dio(
           BaseOptions(
             baseUrl: instance,
@@ -60,13 +62,21 @@ class PipedClient {
 
     final List<Map<String, dynamic>> instances = [];
     for (final line in lines) {
-      final split = line.split("|");
+      final split = (line as String).split("|");
       if (split.length < 4) continue;
       instances.add({
         "name": split[0].trim(),
         "apiUrl": split[1].trim(),
-        "locations":
-            split[2].trim().split(",").map(emojiToCountryCode).toList(),
+        "locations": split[2].trim().split(",").map((cc) {
+          try {
+            return emojiToCountryCode(cc.trim());
+          } catch (e) {
+            if (debug) {
+              print("Error parsing country code: $cc");
+            }
+            return cc.trim();
+          }
+        }).toList(),
         "cdn": split[3].trim().toLowerCase() == "yes",
       });
     }
