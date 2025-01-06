@@ -24,21 +24,21 @@ class PipedClient {
   String _instance;             // Used to store the user-defined Piped instance URL
 
   /// Default Instance list URL
-  static const String _defaultInstanceListUrl =
+  static const String defaultInstanceListUrl =
       "https://raw.githubusercontent.com/wiki/TeamPiped/Piped-Frontend/Instances.md";
 
   /// Default Piped instance URL
-  static const String _defaultInstance = "https://pipedapi.kavin.rocks";
+  static const String defaultInstance = "https://pipedapi.kavin.rocks";
 
   PipedClient({
     String? instance,  // Optional: User-defined Piped instance URL
     this.debug = false,
     String? customInstanceListUrl, // Optional: User-defined Instance list URL
-  }) : _instance = instance ?? _defaultInstance,
+  }) : _instance = instance ?? defaultInstance,
        _customInstanceListUrl = customInstanceListUrl,
        client = Dio(
           BaseOptions(
-            baseUrl: instance ?? _defaultInstance, // Use custom instance or default instance
+            baseUrl: instance ?? defaultInstance, // Use custom instance or default instance
             responseType: ResponseType.json,
           ),
         );
@@ -64,7 +64,7 @@ class PipedClient {
 
   Future<List<PipedInstance>> instanceList() async {
     // Use user-defined link, if not then use the default link
-    final String url = _customInstanceListUrl ?? _defaultInstanceListUrl;
+    final String url = _customInstanceListUrl ?? defaultInstanceListUrl;
 
     final res = await client.get(
       url,
@@ -120,6 +120,6 @@ class PipedClient {
 
   /// Get the current Instance list URL
   String getInstanceListUrl() {
-      return _customInstanceListUrl ?? _defaultInstanceListUrl;
+      return _customInstanceListUrl ?? defaultInstanceListUrl;
   }
 }

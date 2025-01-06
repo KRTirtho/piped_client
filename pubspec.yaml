@@ -8,6 +8,8 @@ environment:
 
 dependencies:
   dio: ^5.1.2
+  flutter:
+    sdk: flutter
   json_annotation: ^4.8.1
 
 dev_dependencies:
