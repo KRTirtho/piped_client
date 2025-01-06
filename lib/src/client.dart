@@ -20,13 +20,25 @@ enum PipedFilter {
 class PipedClient {
   final Dio client;
   final bool debug;
+  String? _customInstanceListUrl; // Used to store the user-defined Instance list URL
+  String _instance;             // Used to store the user-defined Piped instance URL
+
+  /// Default Instance list URL
+  static const String defaultInstanceListUrl =
+      "https://raw.githubusercontent.com/wiki/TeamPiped/Piped-Frontend/Instances.md";
+
+  /// Default Piped instance URL
+  static const String defaultInstance = "https://pipedapi.kavin.rocks";
 
   PipedClient({
-    String instance = "https://pipedapi.kavin.rocks",
+    String? instance,  // Optional: User-defined Piped instance URL
     this.debug = false,
-  }) : client = Dio(
+    String? customInstanceListUrl, // Optional: User-defined Instance list URL
+  }) : _instance = instance ?? defaultInstance,
+       _customInstanceListUrl = customInstanceListUrl,
+       client = Dio(
           BaseOptions(
-            baseUrl: instance,
+            baseUrl: instance ?? defaultInstance, // Use custom instance or default instance
             responseType: ResponseType.json,
           ),
         );
@@ -51,8 +63,11 @@ class PipedClient {
   }
 
   Future<List<PipedInstance>> instanceList() async {
+    // Use user-defined link, if not then use the default link
+    final String url = _customInstanceListUrl ?? defaultInstanceListUrl;
+
     final res = await client.get(
-      "https://raw.githubusercontent.com/wiki/TeamPiped/Piped-Frontend/Instances.md",
+      url,
       options: Options(
         responseType: ResponseType.plain,
       ),
@@ -85,5 +100,26 @@ class PipedClient {
         .map(PipedInstance.fromJson)
         .where((instance) => instance.apiUrl.startsWith("http"))
         .toList();
+  }
+
+  /// Set a custom Instance list URL
+  void setCustomInstanceListUrl(String url) {
+    _customInstanceListUrl = url;
+  }
+
+  /// Set a custom Piped instance URL
+  void setInstanceUrl(String url) {
+    _instance = url;
+    client.options.baseUrl = url;
+  }
+  
+  /// Get the current Piped instance URL
+  String getInstanceUrl() {
+      return _instance;
+  }
+
+  /// Get the current Instance list URL
+  String getInstanceListUrl() {
+      return _customInstanceListUrl ?? defaultInstanceListUrl;
   }
 }
