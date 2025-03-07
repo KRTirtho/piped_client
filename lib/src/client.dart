@@ -52,7 +52,7 @@ class PipedClient {
 
   Future<List<PipedInstance>> instanceList() async {
     final res = await client.get(
-      "https://raw.githubusercontent.com/wiki/TeamPiped/Piped-Frontend/Instances.md",
+      "https://raw.githubusercontent.com/TeamPiped/documentation/refs/heads/main/content/docs/public-instances/index.md",
       options: Options(
         responseType: ResponseType.plain,
       ),
