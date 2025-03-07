@@ -2,6 +2,12 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+## 0.1.2 (2024-03-07)
+
+### Bug Fixes
+
+* fix: piped instances url not working
+
 ## 0.1.1 (2024-02-17)
 
 ### Bug Fixes
